@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PageSage · Read smarter, learn faster</title>
+  <meta name="description" content="A calm, private PDF reader with tap-to-define, built-in dictionary, vocabulary review, and beautiful themes. Made for serious readers and students.">
+  <style>
+    :root {
+      --bg: #0A1814;
+      --surface: #102119;
+      --surface-elevated: #182C23;
+      --border: #203A2E;
+      --text: #EDE3CD;
+      --text-secondary: #94A89C;
+      --text-muted: #6B847C;
+      --accent: #5BD0A8;
+      --accent-light: rgba(91, 208, 168, 0.14);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      line-height: 1.6;
+      font-size: 16px;
+      min-height: 100vh;
+    }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    header {
+      padding: 28px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      margin-left: 24px;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent); }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 100px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero h1 .accent { color: var(--accent); }
+    .hero .subtitle {
+      font-size: 20px;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin: 0 auto 40px;
+      line-height: 1.5;
+    }
+    .cta {
+      display: inline-block;
+      background: transparent;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+      background: var(--accent-light);
+      padding: 16px 32px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .cta:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .cta-note {
+      display: block;
+      margin-top: 16px;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    /* Features */
+    .features {
+      padding: 60px 0 100px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .feature {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .feature-icon {
+      display: inline-flex;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--accent-light);
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+    .feature h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+    .feature p {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .section-label {
+      text-align: center;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      max-width: 700px;
+      margin: 0 auto 16px;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin: 0 auto;
+      font-size: 16px;
+    }
+
+    /* Privacy band */
+    .privacy-band {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 0;
+      text-align: center;
+    }
+    .privacy-band h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .privacy-band p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 24px;
+    }
+    .privacy-band a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .privacy-band a:hover { text-decoration: underline; }
+
+    /* Footer */
+    footer {
+      padding: 48px 0 32px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin: 0 12px;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--accent); }
+    .copy { margin-top: 16px; }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 40px; letter-spacing: -1px; }
+      .hero .subtitle { font-size: 17px; }
+      .section-title { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="index.html" class="logo">PageSage</a>
+      <nav>
+        <a href="privacy.html">Privacy</a>
+        <a href="mailto:pagesage007@gmail.com">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>Read smarter,<br><span class="accent">learn faster.</span></h1>
+      <p class="subtitle">
+        A calm, private PDF reader for serious readers and students.
+        Tap any word for an instant definition. Build vocabulary as you read.
+        Beautiful themes for every mood.
+      </p>
+      <!-- TODO: replace href="#" with the actual Play Store URL once the app is live -->
+      <a href="#" class="cta">Coming soon on Google Play</a>
+      <span class="cta-note">No ads · No marketing trackers · No account required</span>
+    </section>
+  </div>
+
+  <section class="features">
+    <div class="container">
+      <div class="section-label">What it does</div>
+      <h2 class="section-title">A reading app built for thinking</h2>
+      <p class="section-sub">Everything you need to read deeply, retain what matters, and feel at home in any document.</p>
+
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">📖</div>
+          <h3>Tap any word</h3>
+          <p>Built-in dictionary with definitions, pronunciation, and synonyms. Offline. No internet needed.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">📄</div>
+          <h3>Reflow any PDF</h3>
+          <p>Reflow text into a clean, comfortable reading view. Resize, focus, and read without distractions.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🧠</div>
+          <h3>Vocabulary that sticks</h3>
+          <p>Save words instantly. Review with spaced repetition. Watch your reading vocabulary grow.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🌍</div>
+          <h3>Translate offline</h3>
+          <p>Translate words and sentences in 50+ languages, fully on-device after a one-time download.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🎨</div>
+          <h3>Themes for every mood</h3>
+          <p>Four free reading themes. Eleven more in the Aesthetic Pack — including atmospheric surprises.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">📷</div>
+          <h3>Scan physical books</h3>
+          <p>Turn paper pages into searchable PDFs in a few taps. On-device OCR, no cloud.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="privacy-band">
+    <div class="container">
+      <h2>Private by default</h2>
+      <p>
+        No account. No ads. No marketing trackers. Your reading content, vocabulary, highlights, and notes stay on your device.
+        We collect only what's needed to process in-app purchases — nothing else.
+      </p>
+      <a href="privacy.html">Read the privacy policy →</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <a href="privacy.html">Privacy Policy</a>
+      ·
+      <a href="mailto:pagesage007@gmail.com">Contact</a>
+      <div class="copy">© 2026 PageSage</div>
+    </div>
+  </footer>
+</body>
+</html>
